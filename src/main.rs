@@ -1,17 +1,20 @@
+extern crate termion;
+
 mod days;
 
 use days::{day_00};
 use std::env;
+use termion::{color, style};
 
 fn main() {
     let days: Vec<u8>;
     let args: Vec<String> = env::args().collect();
+
+    println!("{0}{2}Advent {3}of {2}Code {3}2021{1}", termion::clear::All, style::Reset, color::Fg(color::Red), color::Fg(color::Green));
     
     if args.len() < 2 {
-        println!("No argument was given --> Solving latest day...");
         days = vec![0];
     } else if args[1] == "all" {
-        println!("Solving all possible days...");
         days = (1..=25).collect::<Vec<u8>>();
     } else {
         days = args
@@ -32,13 +35,13 @@ fn main() {
 
         let (part1_sol, part2_sol) = solve();
 
-        println!("\n=== Day {:02} ===", day);
-        println!("### Part 1 ###");
+        println!("{0}{1}\n=== Day {day:02} ==={0}", style::Reset, color::Fg(color::Green), day = day);
+        println!("{0}{1}### Part 1 ###{0}", style::Reset, color::Fg(color::Blue));
         println!("{}", part1_sol);
-        println!("##############");
-        println!("### Part 2 ###");
+        println!("{0}{1}##############{0}", style::Reset, color::Fg(color::Blue));
+        println!("{0}{1}### Part 2 ###{0}", style::Reset, color::Fg(color::Blue));
         println!("{}", part2_sol);
-        println!("##############");
-        println!("==============");
+        println!("{0}{1}##############{0}", style::Reset, color::Fg(color::Blue));
+        println!("{0}{1}=============={0}", style::Reset, color::Fg(color::Green));
     }
 }
