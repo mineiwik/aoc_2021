@@ -1,4 +1,6 @@
-pub fn solve()  -> (String, String) {
+// TEMPLATE
+
+pub fn solve() -> (String, String) {
     let part1_sol = part1();
     let part2_sol = part2();
 

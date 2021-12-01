@@ -2,7 +2,7 @@ extern crate termion;
 
 mod days;
 
-use days::{day_00};
+use days::day01;
 use std::env;
 use termion::{color, style};
 
@@ -10,8 +10,12 @@ fn main() {
     let days: Vec<u8>;
     let args: Vec<String> = env::args().collect();
 
-    println!("{0}{2}Advent {3}of {2}Code {3}2021{1}", termion::clear::All, style::Reset, color::Fg(color::Red), color::Fg(color::Green));
-    
+    println!(
+        "{1}Advent {2}of {1}Code {2}2021{0}",
+        style::Reset,
+        color::Fg(color::Red),
+        color::Fg(color::Green)
+    );
     if args.len() < 2 {
         days = vec![0];
     } else if args[1] == "all" {
@@ -29,19 +33,44 @@ fn main() {
 
     for day in days {
         let solve: fn() -> (String, String) = match day {
-            0 => day_00::solve,
-            _ => continue
+            1 | 0 => day01::solve,
+            _ => continue,
         };
 
         let (part1_sol, part2_sol) = solve();
 
-        println!("{0}{1}\n=== Day {day:02} ==={0}", style::Reset, color::Fg(color::Green), day = day);
-        println!("{0}{1}### Part 1 ###{0}", style::Reset, color::Fg(color::Blue));
+        println!(
+            "{0}{1}\n=== Day {day:02} ==={0}",
+            style::Reset,
+            color::Fg(color::Green),
+            day = day
+        );
+        println!(
+            "{0}{1}### Part 1 ###{0}",
+            style::Reset,
+            color::Fg(color::Blue)
+        );
         println!("{}", part1_sol);
-        println!("{0}{1}##############{0}", style::Reset, color::Fg(color::Blue));
-        println!("{0}{1}### Part 2 ###{0}", style::Reset, color::Fg(color::Blue));
+        println!(
+            "{0}{1}##############{0}",
+            style::Reset,
+            color::Fg(color::Blue)
+        );
+        println!(
+            "{0}{1}### Part 2 ###{0}",
+            style::Reset,
+            color::Fg(color::Blue)
+        );
         println!("{}", part2_sol);
-        println!("{0}{1}##############{0}", style::Reset, color::Fg(color::Blue));
-        println!("{0}{1}=============={0}", style::Reset, color::Fg(color::Green));
+        println!(
+            "{0}{1}##############{0}",
+            style::Reset,
+            color::Fg(color::Blue)
+        );
+        println!(
+            "{0}{1}=============={0}",
+            style::Reset,
+            color::Fg(color::Green)
+        );
     }
 }
