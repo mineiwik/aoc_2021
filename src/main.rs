@@ -2,9 +2,11 @@ extern crate termion;
 
 mod days;
 
-use days::day01;
+use days::{day01, day02};
 use std::env;
 use termion::{color, style};
+
+const LATEST_DAY: u8 = 2;
 
 fn main() {
     let days: Vec<u8>;
@@ -17,7 +19,7 @@ fn main() {
         color::Fg(color::Green)
     );
     if args.len() < 2 {
-        days = vec![0];
+        days = vec![LATEST_DAY];
     } else if args[1] == "all" {
         days = (1..=25).collect::<Vec<u8>>();
     } else {
@@ -33,7 +35,8 @@ fn main() {
 
     for day in days {
         let solve: fn() -> (String, String) = match day {
-            1 | 0 => day01::solve,
+            1 => day01::solve,
+            2 => day02::solve,
             _ => continue,
         };
 
