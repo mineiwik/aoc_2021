@@ -2,11 +2,11 @@ extern crate termion;
 
 mod days;
 
-use days::{day01, day02};
+use days::{day01, day02, day03};
 use std::env;
 use termion::{color, style};
 
-const LATEST_DAY: u8 = 2;
+const LATEST_DAY: u8 = 3;
 
 fn main() {
     let days: Vec<u8>;
@@ -37,6 +37,7 @@ fn main() {
         let solve: fn() -> (String, String) = match day {
             1 => day01::solve,
             2 => day02::solve,
+            3 => day03::solve,
             _ => continue,
         };
 
