@@ -35,12 +35,8 @@ fn part2(crabs: &Vec<isize>) -> String {
     for crab in crabs {
         let floor_dif = (floor_avg - crab).abs();
         let ceil_dif = (ceil_avg - crab).abs();
-        for j in 1..=ceil_dif {
-            ceil_sum += j;
-        }
-        for j in 1..=floor_dif {
-            floor_sum += j;
-        }
+        ceil_sum += ceil_dif * (ceil_dif + 1) / 2;
+        floor_sum += floor_dif * (floor_dif + 1) / 2;
     }
 
     let sum = if floor_sum < ceil_sum {
