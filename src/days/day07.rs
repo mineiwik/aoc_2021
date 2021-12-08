@@ -27,23 +27,21 @@ fn part1(crabs: &Vec<isize>) -> String {
 }
 
 fn part2(crabs: &Vec<isize>) -> String {
-    // Calculating average (floor and ceil values)
-    let mut ceil_sum = 0;
-    let mut floor_sum = 0;
-    let floor_avg = crabs.iter().sum::<isize>() as isize / crabs.len() as isize;
-    let ceil_avg = floor_avg + 1;
+    // Calculating average (int(avg) +- 1)
+    let mut avg_sum = 0;
+    let mut lower_sum = 0;
+    let mut upper_sum = 0;
+    let avg = crabs.iter().sum::<isize>() as isize / crabs.len() as isize;
+    let upper_avg = avg + 1;
+    let lower_avg = avg - 1;
     for crab in crabs {
-        let floor_dif = (floor_avg - crab).abs();
-        let ceil_dif = (ceil_avg - crab).abs();
-        ceil_sum += ceil_dif * (ceil_dif + 1) / 2;
-        floor_sum += floor_dif * (floor_dif + 1) / 2;
+        let avg_dif = (avg - crab).abs();
+        let upper_dif = (upper_avg - crab).abs();
+        let lower_dif = (lower_avg - crab).abs();
+        avg_sum += avg_dif * (avg_dif + 1) / 2;
+        upper_sum += upper_dif * (upper_dif + 1) / 2;
+        lower_sum += lower_dif * (lower_dif + 1) / 2;
     }
 
-    let sum = if floor_sum < ceil_sum {
-        floor_sum
-    } else {
-        ceil_sum
-    };
-
-    return sum.to_string();
+    return std::cmp::min(avg_sum, std::cmp::min(lower_sum, upper_sum)).to_string();
 }
