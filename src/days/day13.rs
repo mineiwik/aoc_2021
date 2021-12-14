@@ -86,7 +86,7 @@ fn fold(dots: &mut HashSet<(u32, u32)>, instruction: (u32, u32)) {
                 dots.remove(&dot);
             }
         } else {
-            //y fold
+            // y fold
             if dot.1 > instruction.1 {
                 dots.insert((dot.0, dot.1 - 2 * (dot.1 - instruction.1)));
                 dots.remove(&dot);
