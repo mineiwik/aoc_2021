@@ -4,12 +4,12 @@ mod days;
 
 use days::{
     day01, day02, day03, day04, day05, day06, day07, day08, day09, day10, day11, day12, day13,
-    day14,
+    day14, day15,
 };
 use std::env;
 use termion::{color, style};
 
-const LATEST_DAY: u8 = 14;
+const LATEST_DAY: u8 = 15;
 
 fn main() {
     let days: Vec<u8>;
@@ -52,6 +52,7 @@ fn main() {
             12 => day12::solve,
             13 => day13::solve,
             14 => day14::solve,
+            15 => day15::solve,
             _ => continue,
         };
 
