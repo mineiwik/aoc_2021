@@ -37,7 +37,7 @@ fn find_all_trajectories(x_range: (isize, isize), y_range: (isize, isize)) -> is
     let high_y = y_range.0.abs();
 
     for cur_x in low_x..=high_x {
-        for cur_y in low_y..=high_y {
+        for cur_y in low_y..high_y {
             if valid_trajectory((cur_x, cur_y), x_range, y_range) {
                 count += 1;
             }
