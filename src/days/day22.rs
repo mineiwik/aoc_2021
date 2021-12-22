@@ -33,7 +33,7 @@ impl Cuboid {
     fn get_new_cuboids(&mut self, other: &Cuboid) -> Vec<Cuboid> {
         let mut new_cuboids: Vec<Cuboid> = Vec::new();
         if self.overlaps(other) {
-            if self.x_min <= other.x_min {
+            if self.x_min < other.x_min {
                 new_cuboids.push(Cuboid {
                     x_min: self.x_min,
                     x_max: other.x_min - 1,
